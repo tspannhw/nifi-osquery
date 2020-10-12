@@ -1,0 +1,40 @@
+{
+  "options": {
+    "logger_kafka_brokers": "some.example1.com:9092,some.example2.com:9092",
+    "logger_kafka_topic": "base_topic",
+    "logger_kafka_compression": "gzip",
+    "logger_kafka_acks": "1"
+  },
+  "packs": {
+    "system-snapshot": {
+      "queries": {
+        "some_query1": {
+          "query": "select * from system_info",
+          "snapshot": true,
+          "interval": 60
+        },
+        "some_query2": {
+          "query": "select * from md_devices",
+          "snapshot": true,
+          "interval": 60
+        },
+        "some_query3": {
+          "query": "select * from md_drives",
+          "snapshot": true,
+          "interval": 60
+        }
+      }
+    }
+  },
+  "kafka_topics": {
+    "test1_topic": [
+      "pack_system-snapshot_some_query1"
+    ],
+    "test2_topic": [
+      "pack_system-snapshot_some_query2"
+    ],
+    "test3_topic": [
+      "pack_system-snapshot_some_query3"
+    ],
+  }
+}
